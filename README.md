@@ -1,13 +1,13 @@
-# 📦 Streamlit App Starter Kit 
+# Counseling recommendation app
 ```
 ⬆️ (Replace above with your app's name)
 ```
 
-Description of the app ...
+This is an app using a dataset and a topsis algorithm to generate recommendations for students
 
 ## Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://app-starter-kit.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://counseling-recommendation.streamlit.app/)
 
 ## GitHub Codespaces
 
