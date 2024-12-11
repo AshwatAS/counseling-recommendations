@@ -7,7 +7,7 @@ This is an app using a dataset and a topsis algorithm to generate recommendation
 
 ## Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://counseling-recommendation.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://counseling-recommendations.streamlit.app/)
 
 ## GitHub Codespaces
 
