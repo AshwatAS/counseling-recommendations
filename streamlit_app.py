@@ -1,5 +1,9 @@
 import streamlit as st
 
-st.title('Machine Learning')
+st.title('Hello! Welcome to career compass')
+st.info("We help you decide what you should study in the future with the help of our large datasets and accurate algorithms.")
 
-st.write('Hello world!')
+# Collect the name here
+
+# Start with data collection
+
