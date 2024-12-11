@@ -7,4 +7,4 @@ st.info("We help you decide what you should study in the future with the help of
 
 # Start with data collection
 st.header("Try and answer as accurately as possible! Don't worry these questions are helping you, not deciding your future.")
-preferred_environment=("Preferred Work environment",("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work", "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
+preferred_environment=st.selectbox("Preferred Work environment",("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work", "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
