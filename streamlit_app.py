@@ -231,27 +231,37 @@ df = pd.DataFrame(data)
 
 # User Inputs
 student_input = {
-    "Logical Thinking": 0.8,
-    "Creativity": 0.6,
-    "Time Management": 0.7,
-    "Critical Thinking": 0.9,
-    "Adaptability": 0.8,
-    "Machine Learning": 0.5,
-    "Hardware Design": 0.4,
-    "Accounting/Finance": 0.6,
-    "Legal Research": 0.5,
-    "Cooking": 0.3,
-    "Acting": 0.2,
-    "DIY Projects": 0.4,
-    "Research-Oriented": 0.9,
-    "High-pressure Environment": 0.7,
-    "Creative Freedom": 0.8,
-    "Mathematics Score": 1.0,
-    "Science Score": 0.9,
-    "Literature Score": 0.7,
-    "Social Science Score": 0.6
+    preferred_environment: 1.0,
+    # "Logical Thinking": 0.8,
+    # "Creativity": 0.6,
+    # "Time Management": 0.7,
+    # "Critical Thinking": 0.9,
+    # "Adaptability": 0.8,
+    # "Machine Learning": 0.5,
+    # "Hardware Design": 0.4,
+    # "Accounting/Finance": 0.6,
+    # "Legal Research": 0.5,
+    # "Cooking": 0.3,
+    # "Acting": 0.2,
+    # "DIY Projects": 0.4,
+    # "Research-Oriented": 0.9,
+    # "High-pressure Environment": 0.7,
+    # "Creative Freedom": 0.8,
+    # "Mathematics Score": 1.0,
+    # "Science Score": 0.9,
+    # "Literature Score": 0.7,
+    # "Social Science Score": 0.6
 }
-
+for i in selected_hobbies:
+  student_input.setdefault(i,1.0)
+for i in selected_soft_skills:
+  student_input.setdefault(i,1.0)
+for i in selected_passion_areas:
+  student_input.setdefault(i,1.0)
+for i in selected_technical_skills:
+  student_input.setdefault(i,1.0)
+for i in range(len(selected_subjects)):
+  student_input.setdefault(selected_subjects[i],grades[i]/100)
 # Add Salary Data (Estimates based on current market conditions in INR)
 salaries = {
     "Math": 600000,
