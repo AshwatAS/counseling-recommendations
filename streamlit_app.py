@@ -83,7 +83,7 @@ technical_skills = [
 ]
 
 # Use st.multiselect for multiple selection
-selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies)
+selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies, max_selections=5)
 selected_soft_skills=st.multiselect("Select one or more skills:",soft_skills)
 selected_technical_skills=st.multiselect("Select one or more technical skills:",technical_skills)
 input_data={
