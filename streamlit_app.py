@@ -43,7 +43,7 @@ input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect,
   "years_for_job": time_filter,
-  "hobbies": selected_hobbies
+  # "hobbies": selected_hobbies
 }
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
