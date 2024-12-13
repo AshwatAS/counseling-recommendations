@@ -136,3 +136,9 @@ def display_rankings_and_filters(time_filter, salary_filter):
             else:
                 print(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
 
+
+# Example Usage (User Input Needed)
+time_filter = 5  # Example input for max years to land a job
+salary_filter = salary_expect  # Example input for min salary
+enviournment = preferred_environment 
+display_rankings_and_filters(time_filter, salary_filter,enviournment)
