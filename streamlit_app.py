@@ -45,7 +45,8 @@ input_data={
   "years_for_job": time_filter,
   "hobbies": selected_hobbies
 }
-
+input_df=pd.DataFrame(input_data,index=[0])
+input_df
 
 # # Data
 # fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
