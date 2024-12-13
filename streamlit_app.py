@@ -11,8 +11,13 @@ st.subheader("Try and answer as accurately as possible! Don't worry, these quest
 preferred_environment = st.selectbox("What is your preferred work environment?",
                                       ("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work",
                                        "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
-salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1500000, step=50000)
+salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1250000, step=50000)
 time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
+options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+
+# Use st.multiselect for multiple selection
+selected_options = st.multiselect("Select one or more options:", options)
+st.write("You selected:", selected_options)
 
 # # Data
 # fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
