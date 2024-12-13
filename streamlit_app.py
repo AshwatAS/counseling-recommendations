@@ -13,6 +13,7 @@ preferred_environment = st.selectbox("What is your preferred work environment?",
                                        "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
 salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1250000, step=50000)
 time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
+#all the options' lists for input
 hobbies = [
     "Astronomy",
     "Bird Watching",
@@ -36,14 +37,38 @@ hobbies = [
     "Woodworking",
     "Writing"
 ]
+soft_skills = [
+    "Adaptability",
+    "Attention to Detail",
+    "Collaboration",
+    "Communication",
+    "Conflict Resolution",
+    "Creativity",
+    "Critical Thinking",
+    "Decision Making",
+    "Empathy",
+    "Interpersonal Skills",
+    "Leadership",
+    "Negotiation",
+    "Problem-Solving",
+    "Public Speaking",
+    "Resilience",
+    "Self-Motivation",
+    "Stress Management",
+    "Teamwork",
+    "Time Management",
+    "Work Ethic"
+]
 
 # Use st.multiselect for multiple selection
 selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies)
+selected_soft_skills=st.multiselect("Select one or more skills:",soft_skills)
 input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect,
   "years_for_job": time_filter,
-  "hobbies": [selected_hobbies]
+  "hobbies": [selected_hobbies],
+  "soft_skills": [selected_soft_skills]
 }
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
