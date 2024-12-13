@@ -81,18 +81,86 @@ technical_skills = [
     "UI/UX Design",
     "Web Development"
 ]
+passion_areas = [
+    "Automobiles",
+    "Business Strategy",
+    "Creative Arts",
+    "Education",
+    "Entrepreneurship",
+    "Environmental Conservation",
+    "Fashion",
+    "Film & Media",
+    "Fitness & Wellness",
+    "Food & Culinary Arts",
+    "Gaming",
+    "Healthcare",
+    "History & Culture",
+    "Politics",
+    "Science & Research",
+    "Social Work",
+    "Space Exploration",
+    "Sports",
+    "Technology",
+    "Travel"
+]
+subjects = [
+    "Accounting",
+    "Anthropology",
+    "Archaeology",
+    "Architecture",
+    "Art",
+    "Biology",
+    "Business Studies",
+    "Chemistry",
+    "Computer Science",
+    "Data Science",
+    "Economics",
+    "Engineering",
+    "English",
+    "Environmental Science",
+    "Ethics",
+    "Geography",
+    "History",
+    "Law",
+    "Linguistics",
+    "Literature",
+    "Mathematics",
+    "Media Studies",
+    "Medicine",
+    "Music",
+    "Nursing",
+    "Pharmacology",
+    "Philosophy",
+    "Physical Education",
+    "Physics",
+    "Political Science",
+    "Psychology",
+    "Public Health",
+    "Sociology",
+    "Sports Science",
+    "Statistics",
+    "Theology",
+    "Veterinary Science"
+]
 
 # Use st.multiselect for multiple selection
 selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies, max_selections=5)
 selected_soft_skills=st.multiselect("Select one or more skills:",soft_skills)
 selected_technical_skills=st.multiselect("Select one or more technical skills:",technical_skills)
+selected_passion_areas=st.multiselect("Select one or more passion areas:",passion_areas, max_selections=3)
+selected_subjects=st.multiselect("Select the subjects you have studied:",subjects,max_selections=9)
+grades=[]
+for i in subjects:
+  grade = st.slider(f"What was your percentage in {i}", 1, 100, step=1)
+
 input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect,
   "years_for_job": time_filter,
   "hobbies": [selected_hobbies],
   "soft_skills": [selected_soft_skills],
-  "technical_skills": [selected_technical_skills]
+  "technical_skills": [selected_technical_skills],
+  "passion_areas": [selected_passion_areas]
 }
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
