@@ -161,7 +161,7 @@ input_data={
   "hobbies": [selected_hobbies],
   "soft_skills": [selected_soft_skills],
   "technical_skills": [selected_technical_skills],
-  "passion_areas": [selected_passion_areas]
+  "passion_areas": [selected_passion_areas],
   "grades": [grades]
 }
 input_df=pd.DataFrame(input_data,index=[0])
