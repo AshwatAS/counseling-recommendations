@@ -33,20 +33,19 @@ hobbies = [
     "Fishing",
     "Cycling",
     "Hiking",
-    "Board Games"
+    "Board Games",
+    "Reading"
 ]
 
 # Use st.multiselect for multiple selection
-selected_hobbies = st.multiselect("Select one or more options:", hobbies)
+selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies)
 input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect,
   "years_for_job": time_filter,
   "hobbies": selected_hobbies
 }
-input_df=pd.DataFrame(input_data,index=[0])
-input_penguins=pd.concat([input_df,X],axis=0)
-input_df
+
 
 # # Data
 # fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
