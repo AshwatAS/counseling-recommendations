@@ -150,7 +150,7 @@ selected_technical_skills=st.multiselect("Select one or more technical skills:",
 selected_passion_areas=st.multiselect("Select one or more passion areas:",passion_areas, max_selections=3)
 selected_subjects=st.multiselect("Select the subjects you have studied:",subjects,max_selections=9)
 grades=[]
-for i in subjects:
+for i in selected_subjects:
   grade = st.slider(f"What was your percentage in {i}", 1, 100, step=1)
 
 input_data={
