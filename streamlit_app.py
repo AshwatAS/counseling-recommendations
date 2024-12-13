@@ -12,7 +12,7 @@ preferred_environment = st.selectbox("What is your preferred work environment?",
                                       ("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work",
                                        "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
 salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1500000, step=50000)
-
+time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
 # Data
 fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
 data = {
@@ -69,7 +69,7 @@ def filter_jobs(time_filter, salary_filter):
     return filtered_jobs
 
 # Display Output Dynamically
-time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
+
 filtered_jobs = filter_jobs(time_filter, salary_expect)
 
 st.subheader("Career Recommendations:")
