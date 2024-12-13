@@ -320,21 +320,37 @@ def filter_jobs(time_filter, salary_filter):
 
 # Display Rankings and Apply Filters
 def display_rankings_and_filters(time_filter, salary_filter):
-    st.write("### Ranked Fields (TOPSIS):")
-    for field, score in ranking.items():
-        st.write(f"{field}: {score:.2f}")
+  st.title("Career Recommendations")
+  st.write("### Ranked Fields (TOPSIS):")
+  for field, score in ranking.items():
+      st.write(f"{field}: {score:.2f}")
+  
+  st.write("### Filtered Fields:")
+  filtered = filter_jobs(time_filter, salary_filter)
+  if len(filtered) == 1:  # Only the best field is present
+      st.write("No fields match the given filters.")
+      st.write(f"**Best Field:** {filtered[0][0]} - Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
+  else:
+      for job, is_best in filtered:
+          if is_best:
+              st.write(f"**{job} (Best Field):** Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
+          else:
+              st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
+    # st.write("### Ranked Fields (TOPSIS):")
+    # for field, score in ranking.items():
+    #     st.write(f"{field}: {score:.2f}")
     
-    st.write("### Filtered Fields:")
-    filtered = filter_jobs(time_filter, salary_filter)
-    if len(filtered) == 1:  # Only the best field is present
-        st.write("No fields match the given filters.")
-        st.write(f"**Best Field:** {filtered[0][0]} - Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
-    else:
-        for job, is_best in filtered:
-            if is_best:
-                st.write(f"**{job} (Best Field):** Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
-            else:
-                st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
+    # st.write("### Filtered Fields:")
+    # filtered = filter_jobs(time_filter, salary_filter)
+    # if len(filtered) == 1:  # Only the best field is present
+    #     st.write("No fields match the given filters.")
+    #     st.write(f"**Best Field:** {filtered[0][0]} - Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
+    # else:
+    #     for job, is_best in filtered:
+    #         if is_best:
+    #             st.write(f"**{job} (Best Field):** Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
+    #         else:
+    #             st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
 
 # def display_rankings_and_filters(time_filter, salary_filter):
 #     print("Ranked Fields (TOPSIS):")
