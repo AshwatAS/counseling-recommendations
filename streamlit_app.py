@@ -152,6 +152,7 @@ selected_subjects=st.multiselect("Select the subjects you have studied:",subject
 grades=[]
 for i in selected_subjects:
   grade = st.slider(f"What was your percentage in {i}", 1, 100, step=1)
+  grades.append(grade)
 
 input_data={
   "preferred_environment": preferred_environment,
@@ -161,6 +162,7 @@ input_data={
   "soft_skills": [selected_soft_skills],
   "technical_skills": [selected_technical_skills],
   "passion_areas": [selected_passion_areas]
+  "grades": [grades]
 }
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
