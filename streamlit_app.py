@@ -10,7 +10,7 @@ st.subheader("Try and answer as accurately as possible! Don't worry these questi
 preferred_environment=st.selectbox("What is your preferred work environment?",("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work", "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
 salary_expect=st.slider("How much annual income do you expect from your job in the future?(INR)",400000,1500000,step=50000)
 
-input_data {
+input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect
 }
