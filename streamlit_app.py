@@ -2,25 +2,18 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-# Title and Description
-st.title("Hello! Welcome to Career Compass")
+# Title and Introduction
+st.title('Hello! Welcome to Career Compass')
 st.info("We help you decide what you should study in the future with the help of our large datasets and accurate algorithms.")
 
-# Subheader for Instructions
-st.subheader("Try and answer as accurately as possible! Don't worry these questions are helping you, not deciding your future.")
-
 # User Inputs
-preferred_environment = st.selectbox(
-    "What is your preferred work environment?",
-    ("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work", "Desk Job", 
-     "Fieldwork", "Research Lab", "Creative Studio")
-)
-salary_expect = st.slider(
-    "How much annual income do you expect from your job in the future? (INR)", 
-    400000, 1500000, step=50000
-)
+st.subheader("Try and answer as accurately as possible! Don't worry, these questions are helping you, not deciding your future.")
+preferred_environment = st.selectbox("What is your preferred work environment?",
+                                      ("Teaching and Training", "Remote/Work from Home", "On-site Industrial Work",
+                                       "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
+salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1500000, step=50000)
 
-# Original Data and Additional Data
+# Data
 fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
 data = {
     "Attribute": [
@@ -49,27 +42,41 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Weighted Decision Matrix
-student_input = {
-    "Logical Thinking": 0.8, "Creativity": 0.6, "Time Management": 0.7, "Critical Thinking": 0.9,
-    "Adaptability": 0.8, "Machine Learning": 0.5, "Hardware Design": 0.4, "Accounting/Finance": 0.6,
-    "Legal Research": 0.5, "Cooking": 0.3, "Acting": 0.2, "DIY Projects": 0.4,
-    "Research-Oriented": 0.9, "High-pressure Environment": 0.7, "Creative Freedom": 0.8,
-    "Mathematics Score": 1.0, "Science Score": 0.9, "Literature Score": 0.7, "Social Science Score": 0.6
-}
+# Salaries and Years to Land a Job
+salaries = {"Math": 600000, "CS": 1200000, "Engg": 800000, "Med": 1500000, "Arts": 400000, "Biz": 900000, "Sports Sci": 500000, "Journalism": 450000, "Law": 950000}
+years_to_land = {"Math": 5, "CS": 4, "Engg": 4, "Med": 8, "Arts": 4, "Biz": 5, "Sports Sci": 4, "Journalism": 3, "Law": 5}
+
+# Decision Matrix Calculation
 weighted_df = df.copy()
+student_input = {"Logical Thinking": 0.8, "Creativity": 0.6, "Time Management": 0.7, "Critical Thinking": 0.9, "Adaptability": 0.8, "Mathematics Score": 1.0}
 for attr, weight in student_input.items():
     weighted_df.loc[weighted_df["Attribute"] == attr, fields] *= weight
 
-# Ideal and Negative Ideal Solutions
 ideal_solution = weighted_df[fields].max()
 negative_ideal_solution = weighted_df[fields].min()
+
 separation_ideal = np.sqrt(((weighted_df[fields] - ideal_solution) ** 2).sum(axis=0))
 separation_negative = np.sqrt(((weighted_df[fields] - negative_ideal_solution) ** 2).sum(axis=0))
 relative_closeness = separation_negative / (separation_ideal + separation_negative)
 ranking = relative_closeness.sort_values(ascending=False)
 
-# Display Rankings
-st.subheader("Top Career Recommendations")
-for field, score in ranking.items():
-    st.write(f"{field}: {score:.2f}")
+# Filter Jobs
+def filter_jobs(time_filter, salary_filter):
+    filtered_jobs = []
+    for field in ranking.index:
+        if years_to_land[field] <= time_filter and salaries[field] >= salary_filter:
+            filtered_jobs.append(field)
+    return filtered_jobs
+
+# Display Output Dynamically
+time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
+filtered_jobs = filter_jobs(time_filter, salary_expect)
+
+st.subheader("Career Recommendations:")
+st.write(f"**Best Field**: {ranking.index[0]} (Salary: ₹{salaries[ranking.index[0]]}, Years to Land: {years_to_land[ranking.index[0]]})")
+if filtered_jobs:
+    st.write("**Other Suitable Fields:**")
+    for field in filtered_jobs:
+        st.write(f"{field}: Salary ₹{salaries[field]}, Years to Land {years_to_land[field]}")
+else:
+    st.write("No fields match the given filters.")
