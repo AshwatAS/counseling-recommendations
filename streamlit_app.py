@@ -13,11 +13,40 @@ preferred_environment = st.selectbox("What is your preferred work environment?",
                                        "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"))
 salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1250000, step=50000)
 time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
-options = ["Option 1", "Option 2", "Option 3", "Option 4"]
+hobbies = [
+    "Painting",
+    "Writing",
+    "Photography",
+    "Gardening",
+    "Cooking",
+    "Music Composition",
+    "Dance",
+    "Calligraphy",
+    "Knitting",
+    "Bird Watching",
+    "Astronomy",
+    "Woodworking",
+    "Pottery",
+    "Origami",
+    "Sculpting",
+    "Drawing",
+    "Fishing",
+    "Cycling",
+    "Hiking",
+    "Board Games"
+]
 
 # Use st.multiselect for multiple selection
-selected_options = st.multiselect("Select one or more options:", options)
-st.write("You selected:", selected_options)
+selected_hobbies = st.multiselect("Select one or more options:", hobbies)
+input_data={
+  "preferred_environment": preferred_environment,
+  "salary_expect": salary_expect,
+  "years_for_job": time_filter,
+  "hobbies": selected_hobbies
+}
+input_df=pd.DataFrame(input_data,index=[0])
+input_penguins=pd.concat([input_df,X],axis=0)
+input_df
 
 # # Data
 # fields = ["Math", "CS", "Engg", "Med", "Arts", "Biz", "Sports Sci", "Journalism", "Law"]
