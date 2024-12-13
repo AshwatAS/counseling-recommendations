@@ -59,16 +59,40 @@ soft_skills = [
     "Time Management",
     "Work Ethic"
 ]
+technical_skills = [
+    "AR/VR Development",
+    "Blockchain Development",
+    "C++",
+    "Cloud Computing",
+    "Content Writing",
+    "Cybersecurity",
+    "Data Analysis",
+    "Database Management",
+    "Digital Marketing",
+    "Game Design",
+    "Graphic Design",
+    "Java",
+    "Machine Learning",
+    "Mobile App Development",
+    "Network Administration",
+    "Python",
+    "SEO",
+    "Social Media Management",
+    "UI/UX Design",
+    "Web Development"
+]
 
 # Use st.multiselect for multiple selection
 selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies)
 selected_soft_skills=st.multiselect("Select one or more skills:",soft_skills)
+selected_technical_skills=st.multiselect("Select one or more technical skills:",technical_skills)
 input_data={
   "preferred_environment": preferred_environment,
   "salary_expect": salary_expect,
   "years_for_job": time_filter,
   "hobbies": [selected_hobbies],
-  "soft_skills": [selected_soft_skills]
+  "soft_skills": [selected_soft_skills],
+  "technical_skills": [selected_technical_skills]
 }
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
