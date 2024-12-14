@@ -532,8 +532,8 @@ if st.button("Get Career Recommendations"):
         st.write("\nRankings for the fields you should go to (Best to Worst):")
         for rank, (field, score) in enumerate(field_ranking, 1):
             if score>0: 
-                st.write(f"{rank}. {field} (Score: {score:.4f})")
-        st.write(f"\nYour best field is: {field_ranking[0][0]}")
+                st.write(f"{rank}. {field}")
+        st.write(f"\nThe most suitable field for you is: {field_ranking[0][0]}")
         # st.write(pd.DataFrame({
         #     "Field": data.columns[1:],
         #     "Score": scores
