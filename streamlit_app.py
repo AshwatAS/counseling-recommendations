@@ -371,8 +371,8 @@ preferred_environment = st.selectbox(
     ["Teaching and Training", "Remote/Work from Home", "On-site Industrial Work", 
      "Desk Job", "Fieldwork", "Research Lab", "Creative Studio"]
 )
-salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1250000, step=50000)
-time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
+# salary_expect = st.slider("How much annual income do you expect from your job in the future? (INR)", 400000, 1250000, step=50000)
+# time_filter = st.slider("Maximum Years to Land a Job", 3, 8, step=1)
 
 # Options Lists
 hobbies = ["Astronomy", "Bird Watching", "Board Games", "Calligraphy", "Cooking", "Cycling", 
@@ -525,7 +525,7 @@ if st.button("Get Career Recommendations"):
         field_ranking = sorted(zip(fields, scores), key=lambda x: x[1], reverse=True)
 
 #     # Output results
-        st.write("\nField Rankings (Best to Worst):")
+        st.write("\nRankings for the fields you should go to (Best to Worst):")
         for rank, (field, score) in enumerate(field_ranking, 1):
             st.write(f"{rank}. {field} (Score: {score:.4f})")
         st.write(f"\nYour best field is: {field_ranking[0][0]}")
