@@ -503,7 +503,7 @@ def topsis_decision(matrix, weights):
 # Example TOPSIS Integration
 if st.button("Get Career Recommendations"):
     # Load example data
-    data_url = "https://raw.githubusercontent.com/AshwatAS/counseling-recommendations/refs/heads/master/Logically_Adjusted_CSV_Data__Fixed_.csv"
+    data_url = "https://raw.githubusercontent.com/AshwatAS/counseling-recommendations/refs/heads/master/Final_VF.csv"
     try:
         data = pd.read_csv(data_url)
         attributes = data['Unnamed: 0']
