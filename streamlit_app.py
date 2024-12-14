@@ -169,7 +169,7 @@ input_df
 
 #fields = ["Math", "Computer Science", "Engineering", "Medicine", "Arts", "Business", "Sports Science", "Journalism", "Law", "Environmental Science"]
 
-df = pd.DataFrame(data)
+
 attributes=[
         "Painting", "Writing", "Photography", "Gardening", "Cooking",
         "Music Composition", "Dance", "Calligraphy", "Knitting",
