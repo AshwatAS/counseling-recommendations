@@ -509,8 +509,8 @@ if st.button("Get Career Recommendations"):
         attributes = data['Unnamed: 0']
         fields = data.columns[1:]
         decision_matrix = data.iloc[:, 1:].values
-        data
-        decision_matrix
+        #data
+        #decision_matrix
         #decision_matrix = data.iloc[:, 1:].values
         #attributes = data.iloc[:, 0].tolist()
 
@@ -520,6 +520,7 @@ if st.button("Get Career Recommendations"):
         
         st.success("Career Recommendations Generated!")
         selected_indices=[attributesl.index(x) for x in input_list]
+        #st.write(selected_indices)
         filtered_matrix = decision_matrix[selected_indices, :]
         filtered_matrix
         # selected_attributes = [attributes[idx] for idx in selected_indices]
