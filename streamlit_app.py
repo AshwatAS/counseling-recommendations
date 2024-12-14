@@ -517,7 +517,7 @@ if st.button("Get Career Recommendations"):
         scores = topsis_decision(decision_matrix, weights)
         
         st.success("Career Recommendations Generated!")
-        selected_indices=[attributesl.index(x)+1 for x in input_list]
+        selected_indices=[attributesl.index(x) for x in input_list]
         filtered_matrix = decision_matrix[selected_indices, :]
         # selected_attributes = [attributes[idx] for idx in selected_indices]
         selected_attributes = input_list
