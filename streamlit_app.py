@@ -418,11 +418,49 @@ grades = {}
 for subject in selected_subjects:
     grades[subject] = st.slider(f"What was your percentage in {subject}?", 1, 100, step=1)
 
+attributes=[
+        "Painting", "Writing", "Photography", "Gardening", "Cooking",
+        "Music Composition", "Dance", "Calligraphy", "Knitting",
+        "Bird Watching", "Astronomy", "Woodworking", "Pottery",
+        "Origami", "Sculpting", "Drawing", "Fishing", "Cycling",
+        "Hiking", "Board Games", "Communication", "Teamwork",
+        "Problem-Solving", "Leadership", "Adaptability",
+        "Conflict Resolution", "Empathy", "Time Management",
+        "Decision Making", "Negotiation", "Stress Management",
+        "Public Speaking", "Creativity", "Collaboration",
+        "Work Ethic", "Attention to Detail", "Interpersonal Skills",
+        "Resilience", "Critical Thinking", "Self-Motivation", "Python",
+        "Java", "C++", "Data Analysis", "Web Development",
+        "Machine Learning", "Cloud Computing", "Database Management",
+        "Cybersecurity", "Mobile App Development", "Network Administration",
+        "Game Design", "AR/VR Development", "Robotics",
+        "Blockchain Development", "Digital Marketing", "SEO",
+        "Social Media Management", "Graphic Design", "UI/UX Design",
+        "Teaching and Training", "Remote/Work from Home",
+        "On-site Industrial Work", "Desk Job", "Fieldwork",
+        "Research Lab", "Creative Studio", "Technology",
+        "Creative Arts", "Sports", "Environmental Conservation",
+        "Entrepreneurship", "Healthcare", "Education", "Travel",
+        "Fashion", "Gaming", "Automobiles", "Social Work",
+        "Science & Research", "Business Strategy", "Politics",
+        "Fitness & Wellness", "Food & Culinary Arts", "Film & Media",
+        "History & Culture", "Space Exploration", "Content Writing",
+        "Mathematics", "Physics", "Chemistry", "Biology",
+        "Computer Science", "English", "History", "Geography",
+        "Economics", "Philosophy", "Psychology", "Sociology",
+        "Political Science", "Environmental Science", "Statistics",
+        "Business Studies", "Accounting", "Art", "Music",
+        "Physical Education", "Law", "Medicine", "Engineering",
+        "Literature", "Linguistics", "Anthropology", "Archaeology",
+        "Ethics", "Theology", "Public Health", "Pharmacology",
+        "Nursing", "Veterinary Science", "Architecture", "Media Studies",
+        "Sports Science", "Data Science", "Reading"
+    ]
 # Input Data Summary
 input_data = {
     "Preferred Environment": preferred_environment,
-    "Salary Expectation": salary_expect,
-    "Years to Land a Job": time_filter,
+    # "Salary Expectation": salary_expect,
+    # "Years to Land a Job": time_filter,
     "Hobbies": selected_hobbies,
     "Soft Skills": selected_soft_skills,
     "Technical Skills": selected_technical_skills,
@@ -433,15 +471,32 @@ input_data = {
 st.write("Your Input Data:")
 st.json(input_data)
 
+# decisions={
+#     attributes.index(preferred_environment): 1,
+#     attributes.index(preferred_environment): 1,
+#     attributes.index(preferred_environment): 1,
+#     attributes.index(preferred_environment): 1,
+# }
 # TOPSIS Decision Logic
 def topsis_decision(matrix, weights):
+    # Step 1: Normalize the decision matrix
     norm_matrix = matrix / np.sqrt((matrix**2).sum(axis=0))
+
+    # Step 2: Apply the weights
     weighted_matrix = norm_matrix * weights
+
+    # Step 3: Determine ideal best and ideal worst values
     ideal_best = weighted_matrix.max(axis=0)
     ideal_worst = weighted_matrix.min(axis=0)
+
+    # Step 4: Calculate distances to the ideal best and worst
     distance_to_best = np.sqrt(((weighted_matrix - ideal_best)**2).sum(axis=1))
     distance_to_worst = np.sqrt(((weighted_matrix - ideal_worst)**2).sum(axis=1))
+
+    # Step 5: Calculate the performance score
     scores = distance_to_worst / (distance_to_best + distance_to_worst)
+
+    # Return scores
     return scores
 
 # Example TOPSIS Integration
@@ -450,8 +505,11 @@ if st.button("Get Career Recommendations"):
     data_url = "https://raw.githubusercontent.com/AshwatAS/counseling-recommendations/refs/heads/master/Logically_Adjusted_CSV_Data__Fixed_.csv"
     try:
         data = pd.read_csv(data_url)
+        attributes = data['Unnamed: 0']
+        fields = data.columns[1:]
         decision_matrix = data.iloc[:, 1:].values
-        attributes = data.iloc[:, 0].tolist()
+        #decision_matrix = data.iloc[:, 1:].values
+        #attributes = data.iloc[:, 0].tolist()
 
         # Example weights (equal weighting)
         weights = np.ones(decision_matrix.shape[1])
