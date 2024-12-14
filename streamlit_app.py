@@ -292,7 +292,8 @@ def topsis_decision(matrix, weights):
 # Main function to run the program
 def run_topsis_from_csv(file_path):
     # Load the CSV file
-    data = pd.read_csv(file_path)
+    data = pd.read_csv("https://raw.githubusercontent.com/AshwatAS/counseling-recommendations/refs/heads/master/Logically_Adjusted_CSV_Data__Fixed_.csv")
+    data
     
     # Extract attributes and fields
     attributes = data['Unnamed: 0']
