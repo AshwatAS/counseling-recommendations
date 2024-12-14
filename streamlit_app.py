@@ -167,9 +167,10 @@ input_data={
 input_df=pd.DataFrame(input_data,index=[0])
 input_df
 
-fields = ["Math", "Computer Science", "Engineering", "Medicine", "Arts", "Business", "Sports Science", "Journalism", "Law", "Environmental Science"]
-data = {
-    "Attribute": [
+#fields = ["Math", "Computer Science", "Engineering", "Medicine", "Arts", "Business", "Sports Science", "Journalism", "Law", "Environmental Science"]
+
+df = pd.DataFrame(data)
+attributes=[
         "Painting", "Writing", "Photography", "Gardening", "Cooking",
         "Music Composition", "Dance", "Calligraphy", "Knitting",
         "Bird Watching", "Astronomy", "Woodworking", "Pottery",
@@ -206,34 +207,10 @@ data = {
         "Ethics", "Theology", "Public Health", "Pharmacology",
         "Nursing", "Veterinary Science", "Architecture", "Media Studies",
         "Sports Science", "Data Science", "Reading"
-    ],
-     "Math": [0.13567, 0.23456, 0.32145, 0.12567, 0.23145, 0.22345, 0.12789, 0.10567, 0.13245, 0.13245, 0.87654, 0.65432, 0.30987, 0.34567, 0.22345, 0.34567, 0.24345, 0.34567, 0.34567, 0.13567, 0.43234, 0.27654, 0.76543, 0.34567, 0.43234, 0.34567, 0.54321, 0.65432, 0.43234, 0.31234, 0.54321, 0.65432, 0.34567, 0.54321, 0.65432, 0.76543, 0.54321, 0.43234, 0.76543, 0.65432, 0.98765, 0.87654, 0.76543, 0.54321, 0.65432, 0.76543, 0.65432, 0.54321, 0.76543, 0.54321, 0.65432, 0.43234, 0.65432, 0.76543, 0.87654, 0.54321, 0.65432, 0.54321, 0.43234, 0.65432, 0.43234, 0.54321, 0.76543, 0.54321, 0.65432, 0.76543, 0.54321, 0.87654, 0.43234, 0.54321, 0.76543, 0.54321, 0.76543, 0.43234, 0.54321, 0.43234, 0.54321, 0.76543, 0.54321, 0.87654, 0.43234, 0.65432, 0.54321, 0.43234, 0.54321, 0.65432, 0.87654, 0.43234, 0.98765, 0.87654, 0.76543, 0.76543, 0.87654, 0.54321, 0.65432, 0.54321, 0.43234, 0.54321, 0.54321, 0.43234, 0.76543, 0.67234, 0.91234, 0.41234, 0.75432, 0.35678, 0.26543, 0.54321, 0.65432, 0.54321, 0.74321, 0.23456, 0.54321, 0.65432, 0.54321, 0.76543, 0.65321, 0.43234, 0.54321, 0.76543, 0.23456, 0.74321, 0.43234, 0.43245, 0.98765, 0.54321
-],
-    "Computer Science": [0.05432, 0.34567, 0.20987, 0.13456, 0.13456, 0.12567, 0.15432, 0.15432, 0.10123, 0.10987, 0.23456, 0.30987, 0.13567, 0.32145, 0.13567, 0.22345, 0.13245, 0.34567, 0.23456, 0.23456, 0.64523, 0.45662, 0.98765, 0.54203, 0.34567, 0.43234, 0.65432, 0.54321, 0.86751, 0.43234, 0.55664, 0.54321, 0.23456, 0.43234, 0.86532, 0.92056, 0.65432, 0.54321, 0.76543, 0.54321, 0.87654, 0.98765, 0.87654, 0.65432, 0.76543, 0.98765, 0.76543, 0.65432, 0.76543, 0.43234, 0.54321, 0.54321, 0.76543, 0.98765, 0.98765, 0.43234, 0.54321, 0.43234, 0.54321, 0.76543, 0.54321, 0.43234, 0.54321, 0.43234, 0.76543, 0.65432, 0.43234, 0.98765, 0.54321, 0.43234, 0.65432, 0.43234, 0.54321, 0.75684, 0.43234, 0.54321, 0.76543, 0.75624, 0.43234, 0.98765, 0.54321, 0.43234, 0.43234, 0.54321, 0.65432, 0.54321, 0.98765, 0.54321, 0.94562, 0.98765, 0.76543, 0.54321, 0.99877, 0.43234, 0.54321, 0.43234, 0.54321, 0.43234, 0.43234, 0.54321, 0.54321, 0.43567, 0.93456, 0.92345, 0.61234, 0.21345, 0.34567, 0.43245, 0.54321, 0.75432, 0.87654, 0.23456, 0.54321, 0.32145, 0.23456, 0.43245, 0.42345, 0.65432, 0.87654, 0.54321, 0.34567, 0.65432, 0.32145, 0.54321, 0.98456, 0.43245
-],
-    "Engineering": [0.11458, 0.21345, 0.13245, 0.28976, 0.21567, 0.13456, 0.21789, 0.11432, 0.12145, 0.11234, 0.95673, 0.97543, 0.43654, 0.21345, 0.43245, 0.21789, 0.42123, 0.56789, 0.76543, 0.27654, 0.34567, 0.51234, 0.87654, 0.45678, 0.56432, 0.56789, 0.53245, 0.65432, 0.23456, 0.34567, 0.23456, 0.65432, 0.43234, 0.76543, 0.54321, 0.65432, 0.43234, 0.34567, 0.65432, 0.43234, 0.76543, 0.65432, 0.76543, 0.76543, 0.54321, 0.87654, 0.54321, 0.76543, 0.65432, 0.65432, 0.76543, 0.65432, 0.87654, 0.87654, 0.76543, 0.54321, 0.76543, 0.54321, 0.65432, 0.76543, 0.43234, 0.54321, 0.65432, 0.43234, 0.76543, 0.87654, 0.54321, 0.76543, 0.43234, 0.65432, 0.43234, 0.54321, 0.43234, 0.43234, 0.54321, 0.76543, 0.87654, 0.98765, 0.54321, 0.87654, 0.65432, 0.54321, 0.76543, 0.43234, 0.43234, 0.43234, 0.76543, 0.43234, 0.76543, 0.87654, 0.65432, 0.43234, 0.76543, 0.54321, 0.43234, 0.65432, 0.76543, 0.54321, 0.76543, 0.43234, 0.54321, 0.6789, 0.45321, 0.65432, 0.32145, 0.43234, 0.13245, 0.65432, 0.23654, 0.65432, 0.98765, 0.34234, 0.65432, 0.56789, 0.43245, 0.54321, 0.43234, 0.54321, 0.54321, 0.43245, 0.54321, 0.76543, 0.43245, 0.76543, 0.54321, 0.54321
-],
-    "Medicine": [0.07634, 0.10234, 0.11234, 0.62345, 0.91234, 0.21567, 0.34678, 0.12567, 0.21567, 0.34567, 0.38765, 0.43245, 0.34567, 0.14567, 0.21567, 0.13456, 0.34567, 0.34567, 0.52345, 0.21567, 0.21345, 0.43234, 0.94567, 0.53245, 0.47654, 0.34567, 0.76543, 0.54321, 0.54321, 0.24567, 0.65432, 0.34567, 0.54321, 0.54321, 0.76543, 0.43234, 0.76543, 0.76543, 0.43234, 0.65432, 0.43234, 0.34567, 0.43234, 0.87654, 0.43234, 0.54321, 0.43234, 0.65432, 0.54321, 0.76543, 0.43234, 0.54321, 0.43234, 0.54321, 0.43234, 0.65432, 0.43234, 0.76543, 0.54321, 0.54321, 0.76543, 0.43234, 0.43234, 0.65432, 0.43234, 0.76543, 0.43234, 0.43234, 0.76543, 0.76543, 0.87654, 0.76543, 0.98765, 0.76543, 0.43234, 0.43234, 0.43234, 0.43234, 0.87654, 0.76543, 0.43234, 0.76543, 0.54321, 0.65432, 0.54321, 0.76543, 0.54321, 0.76543, 0.54321, 0.76543, 0.98765, 0.98765, 0.43234, 0.43234, 0.76543, 0.54321, 0.54321, 0.76543, 0.87654, 0.76543, 0.65432, 0.76234, 0.43245, 0.58976, 0.42123, 0.56345, 0.65432, 0.76543, 0.43245, 0.98432, 0.76543, 0.24345, 0.43245, 0.43245, 0.76543, 0.65432, 0.54321, 0.87654, 0.43245, 0.65432, 0.76543, 0.54321, 0.76543, 0.65432, 0.65432, 0.4
-],
-    "Arts": [0.92745, 0.85673, 0.76522, 0.34789, 0.34657, 0.76548, 0.92456, 0.93987, 0.85987, 0.12456, 0.01243, 0.37654, 0.89765, 0.91654, 0.91234, 0.91234, 0.01234, 0.01245, 0.12434, 0.35678, 0.43234, 0.53456, 0.54321, 0.65432, 0.54321, 0.43234, 0.87654, 0.65432, 0.24578, 0.43234, 0.76543, 0.54321, 0.87654, 0.65432, 0.54321, 0.54321, 0.65432, 0.54321, 0.65432, 0.76543, 0.54321, 0.43234, 0.56445, 0.54321, 0.65432, 0.54321, 0.54321, 0.43234, 0.43234, 0.45235, 0.42568, 0.76543, 0.54321, 0.65432, 0.31256, 0.76543, 0.65432, 0.87654, 0.98765, 0.98765, 0.54321, 0.65432, 0.54321, 0.54321, 0.54321, 0.43234, 0.98765, 0.54321, 0.98765, 0.43234, 0.54321, 0.76543, 0.43234, 0.54321, 0.76543, 0.87654, 0.65432, 0.21245, 0.43234, 0.54321, 0.76543, 0.43234, 0.76543, 0.98765, 0.98765, 0.87654, 0.01245, 0.76543, 0.43234, 0.54321, 0.03545, 0.02454, 0.54321, 0.98765, 0.87654, 0.76543, 0.65432, 0.76543, 0.65432, 0.43234, 0.76543, 0.56234, 0.04568, 0.43568, 0.12344, 0.98432, 0.87234, 0.23456, 0.43567, 0.1234, 0.34567, 0.65432, 0.43245, 0.31234, 0.23456, 0.54321, 0.65432, 0.34558, 0.23456, 0.46587, 0.43556, 0.54321, 0.54321, 0.54321, 0.46787, 0.23456
-],
-    "Business": [0.01234, 0.34568, 0.23155, 0.12466, 0.34654, 0.34621, 0.34597, 0.34678, 0.24655, 0.43245, 0.23456, 0.56985, 0.23556, 0.42345, 0.52345, 0.46789, 0.34497, 0.23558, 0.25646, 0.51234, 0.76543, 0.67234, 0.65432, 0.75432, 0.41234, 0.34567, 0.45678, 0.43234, 0.65432, 0.54321, 0.34567, 0.76543, 0.54321, 0.43234, 0.34567, 0.65432, 0.76543, 0.43234, 0.87654, 0.54321, 0.65432, 0.54321, 0.43234, 0.65432, 0.87654, 0.76543, 0.65432, 0.54321, 0.54321, 0.76543, 0.76543, 0.43234, 0.54321, 0.76543, 0.65432, 0.87654, 0.76543, 0.76543, 0.43234, 0.76543, 0.65432, 0.54321, 0.65432, 0.76543, 0.43234, 0.54321, 0.54321, 0.76543, 0.54321, 0.54321, 0.43234, 0.87654, 0.54321, 0.76543, 0.54321, 0.76543, 0.76543, 0.76543, 0.54321, 0.76543, 0.98765, 0.65432, 0.87654, 0.54321, 0.76543, 0.65432, 0.54321, 0.65432, 0.65432, 0.76543, 0.54321, 0.65432, 0.65432, 0.54321, 0.65432, 0.23487, 0.98765, 0.23149, 0.46451, 0.48715, 0.76543, 0.11355, 0.54321, 0.91234, 0.92345, 0.24567, 0.65432, 0.65432, 0.76543, 0.54321, 0.65432, 0.34567, 0.76543, 0.423578, 0.65432, 0.54321, 0.87654, 0.42121, 0.76543, 0.24872, 0.23487, 0.76543, 0.76543, 0.76543, 0.87654, 0.24654
-],
-    "Sports Science": [0.09673, 0.21789, 0.21567, 0.93876, 0.61789, 0.01245, 0.75421, 0.12435, 0.34597, 0.87541, 0.13456, 0.45618, 0.32345, 0.26789, 0.39876, 0.35678, 0.93234, 0.73245, 0.84567, 0.45678, 0.56789, 0.76543, 0.76234, 0.34567, 0.56789, 0.52345, 0.34567, 0.76543, 0.43234, 0.65432, 0.54321, 0.34567, 0.76543, 0.65432, 0.43234, 0.76543, 0.65432, 0.76543, 0.76543, 0.76543, 0.76543, 0.65432, 0.76543, 0.76543, 0.54321, 0.65432, 0.65413, 0.42156, 0.76543, 0.34877, 0.45789, 0.34561, 0.76543, 0.43234, 0.54321, 0.54321, 0.43234, 0.65432, 0.76543, 0.65432, 0.43234, 0.76543, 0.54321, 0.43234, 0.76543, 0.65432, 0.76543, 0.65432, 0.76543, 0.76543, 0.54321, 0.43234, 0.43234, 0.43234, 0.65432, 0.32455, 0.34878, 0.24255, 0.76543, 0.54321, 0.24311, 0.23456, 0.54321, 0.76543, 0.54321, 0.54321, 0.34678, 0.45112, 0.76543, 0.65432, 0.76543, 0.54321, 0.76543, 0.76543, 0.54321, 0.76543, 0.43234, 0.76543, 0.76543, 0.65432, 0.43234, 0.76543, 0.34234, 0.36789, 0.12345, 0.34567, 0.25432, 0.98765, 0.34234, 0.54321, 0.87654, 0.76345, 0.34567, 0.76543, 0.87654, 0.76543, 0.43245, 0.98765, 0.65432, 0.12489, 0.54321, 0.74551, 0.87654, 0.98765, 0.54321, 0.76543
-],
-    "Journalism": [0.45123, 0.91234, 0.84523, 0.34234, 0.52345, 0.86789, 0.76543, 0.81234, 0.19876, 0.54795, 0.57689, 0.43234, 0.62345, 0.63456, 0.45671, 0.84567, 0.43245, 0.52345, 0.43245, 0.34567, 0.59876, 0.24567, 0.34567, 0.56789, 0.65432, 0.67234, 0.41234, 0.65432, 0.34567, 0.23456, 0.43234, 0.43234, 0.41234, 0.43234, 0.34567, 0.54321, 0.54321, 0.65432, 0.43234, 0.54321, 0.12554, 0.35465, 0.23456, 0.43234, 0.43234, 0.43234, 0.34567, 0.43234, 0.43234, 0.43234, 0.54321, 0.65432, 0.43234, 0.54321, 0.43234, 0.43234, 0.54321, 0.54321, 0.65432, 0.43234, 0.76543, 0.43234, 0.76543, 0.76543, 0.65432, 0.43234, 0.65432, 0.54321, 0.54321, 0.65432, 0.65432, 0.65432, 0.76543, 0.76543, 0.76543, 0.65432, 0.43234, 0.54321, 0.76543, 0.43234, 0.54321, 0.76543, 0.43234, 0.65432, 0.76543, 0.43234, 0.65432, 0.76543, 0.43234, 0.43234, 0.54321, 0.43234, 0.54321, 0.65432, 0.43234, 0.65432, 0.76543, 0.43234, 0.54321, 0.76543, 0.54321, 0.56789, 0.76543, 0.54321, 0.64321, 0.87654, 0.93234, 0.76543, 0.93234, 0.54321, 0.54321, 0.65432, 0.93234, 0.76543, 0.65432, 0.32145, 0.76543, 0.76543, 0.54321, 0.65432, 0.87654, 0.65432, 0.54321, 0.76543, 0.43234, 0.54321
-],
-    "Law": [0.20987, 0.42345, 0.31234, 0.21234, 0.32567, 0.31234, 0.42123, 0.18765, 0.12567, 0.23456, 0.12567, 0.24567, 0.23456, 0.16543, 0.23654, 0.32345, 0.12567, 0.43245, 0.21345, 0.18976, 0.75548, 0.42345, 0.65475, 0.65482, 0.34567, 0.45051, 0.54321, 0.34567, 0.466789, 0.76543, 0.54321, 0.86578, 0.54321, 0.56789, 0.86455, 0.43234, 0.43234, 0.23456, 0.65447, 0.65432, 0.43234, 0.76543, 0.54321, 0.54321, 0.65432, 0.65432, 0.43234, 0.76543, 0.54321, 0.54321, 0.76543, 0.76543, 0.65432, 0.76543, 0.65432, 0.65432, 0.76543, 0.43234, 0.43234, 0.76543, 0.65432, 0.76543, 0.65488, 0.75881, 0.76543, 0.54321, 0.43234, 0.76543, 0.43234, 0.76543, 0.54321, 0.76543, 0.43234, 0.87264, 0.54321, 0.54321, 0.54321, 0.65432, 0.43234, 0.65784, 0.65432, 0.87654, 0.54321, 0.43234, 0.43234, 0.87615, 0.43234, 0.43234, 0.76543, 0.76543, 0.76543, 0.65432, 0.76543, 0.54321, 0.86748, 0.54321, 0.54321, 0.76543, 0.76543, 0.54321, 0.79846, 0.21234, 0.53678, 0.43245, 0.57884, 0.62345, 0.54321, 0.64788, 0.99999, 0.65432, 0.32145, 0.54774, 0.23456, 0.54321, 0.43234, 0.78441, 0.54321, 0.35611, 0.76543, 0.54321, 0.54321, 0.76543, 0.75988, 0.54321, 0.76543, 0.94515
-],
-    "Environmental Science": [0.31567, 0.63123, 0.43789, 0.83245, 0.84234, 0.3218, 0.32145, 0.45678, 0.51234, 0.87955, 0.72345, 0.465711, 0.56789, 0.36789, 0.62345, 0.52345, 0.72345, 0.65432, 0.84567, 0.23456, 0.34567, 0.54321, 0.43234, 0.43234, 0.34567, 0.45321, 0.32145, 0.56789, 0.54321, 0.34567, 0.76543, 0.54321, 0.76543, 0.65432, 0.54321, 0.34567, 0.54321, 0.34567, 0.65432, 0.43234, 0.1244, 0.23445, 0.24554, 0.45877, 0.55412, 0.34677, 0.45977, 0.43234, 0.65432, 0.76543, 0.65432, 0.54321, 0.45787, 0.65432, 0.45784, 0.43234, 0.43234, 0.65432, 0.54579, 0.54321, 0.54321, 0.43234, 0.76543, 0.65432, 0.65432, 0.76543, 0.76543, 0.54321, 0.76543, 0.43234, 0.98765, 0.54321, 0.65432, 0.54321, 0.43234, 0.76543, 0.65432, 0.76543, 0.65432, 0.98765, 0.54321, 0.54321, 0.65432, 0.76543, 0.54321, 0.43234, 0.76543, 0.54321, 0.54321, 0.54321, 0.65432, 0.76543, 0.65432, 0.43234, 0.43234, 0.43234, 0.65432, 0.54321, 0.65432, 0.43234, 0.54321, 0.97856, 0.43234, 0.54234, 0.31456, 0.76543, 0.48765, 0.45678, 0.67234, 0.93234, 0.76543, 0.23456, 0.54321, 0.87654, 0.54321, 0.43245, 0.76543, 0.65432, 0.94321, 0.76543, 0.65432, 0.54321, 0.65432, 0.43234, 0.54321, 0.43245
-]	
-}
-
-df = pd.DataFrame(data)
-
+    ]
 # User Inputs
 student_input = {
-    preferred_environment: 1.0,
+    attributes.index(preferred_environment): 10,
     # "Logical Thinking": 0.8,
     # "Creativity": 0.6,
     # "Time Management": 0.7,
@@ -255,15 +232,15 @@ student_input = {
     # "Social Science Score": 0.6
 }
 for i in selected_hobbies:
-  student_input.setdefault(i,1.0)
+  student_input.setdefault(attributes.index(i)+1,10)
 for i in selected_soft_skills:
-  student_input.setdefault(i,1.0)
+  student_input.setdefault(attributes.index(i)+1,10)
 for i in selected_passion_areas:
-  student_input.setdefault(i,1.0)
+  student_input.setdefault(attributes.index(i)+1,10)
 for i in selected_technical_skills:
-  student_input.setdefault(i,1.0)
+  student_input.setdefault(attributes.index(i)+1,10)
 for i in range(len(selected_subjects)):
-  student_input.setdefault(selected_subjects[i],grades[i]/100)
+  student_input.setdefault(attributes.index(selected_subjects[i])+1,round(grades[i]/100)*10)
 # Add Salary Data (Estimates based on current market conditions in INR)
 salaries = {
     "Math": 600000,
@@ -290,104 +267,87 @@ years_to_land = {
     "Law": 5
 }
 
-normalized_df = (df[fields] - df[fields].min()) / (df[fields].max() - df[fields].min())
 
-# Weighted Decision Matrix
-weighted_df = normalized_df.copy()
-for attr, weight in student_input.items():
-    weighted_df.loc[df["Attribute"] == attr, fields] *= weight
+def topsis_decision(matrix, weights):
+    # Step 1: Normalize the decision matrix
+    norm_matrix = matrix / np.sqrt((matrix**2).sum(axis=0))
 
-# Ideal Solutions
-ideal_solution = weighted_df[fields].max()
-negative_ideal_solution = weighted_df[fields].min()
+    # Step 2: Apply the weights
+    weighted_matrix = norm_matrix * weights
 
-# Separations
-separation_ideal = np.sqrt(((weighted_df[fields] - ideal_solution) ** 2).sum(axis=0))
-separation_negative = np.sqrt(((weighted_df[fields] - negative_ideal_solution) ** 2).sum(axis=0))
+    # Step 3: Determine ideal best and ideal worst values
+    ideal_best = weighted_matrix.max(axis=0)
+    ideal_worst = weighted_matrix.min(axis=0)
 
-# Relative Closeness
-relative_closeness = separation_negative / (separation_ideal + separation_negative)
-ranking = relative_closeness.sort_values(ascending=False)
+    # Step 4: Calculate distances to the ideal best and worst
+    distance_to_best = np.sqrt(((weighted_matrix - ideal_best)**2).sum(axis=1))
+    distance_to_worst = np.sqrt(((weighted_matrix - ideal_worst)**2).sum(axis=1))
 
-# Sensitivity Analysis
-def sensitivity_analysis(weight_sets):
-    """
-    Perform sensitivity analysis by testing the algorithm with different weight configurations.
+    # Step 5: Calculate the performance score
+    scores = distance_to_worst / (distance_to_best + distance_to_worst)
 
-    Parameters:
-    weight_sets (list of dict): A list of weight dictionaries to test.
+    # Return scores
+    return scores
 
-    Returns:
-    list of pd.Series: Rankings for each weight configuration.
-    """
-    results = []
-    for i, weights in enumerate(weight_sets):
-        # Create a weighted decision matrix with the given weights
-        temp_weighted_df = normalized_df.copy()
-        for attr, weight in weights.items():
-            temp_weighted_df.loc[df["Attribute"] == attr, fields] *= weight
-
-        # Recalculate ideal solutions and separations
-        temp_ideal_solution = temp_weighted_df[fields].max()
-        temp_negative_ideal_solution = temp_weighted_df[fields].min()
-
-        temp_separation_ideal = np.sqrt(((temp_weighted_df[fields] - temp_ideal_solution) ** 2).sum(axis=0))
-        temp_separation_negative = np.sqrt(((temp_weighted_df[fields] - temp_negative_ideal_solution) ** 2).sum(axis=0))
-
-        temp_relative_closeness = temp_separation_negative / (temp_separation_ideal + temp_separation_negative)
-        temp_ranking = temp_relative_closeness.sort_values(ascending=False)
-
-        results.append((i + 1, temp_ranking))
-    return results
-
-# Define weight variations
-weight_sets = [
-    {key: 0.5 for key in student_input.keys()},  # Equal weight for all
-    {key: 0.8 if key in ["Data Analysis", "Adaptability"] else 0.4 for key in student_input.keys()},  # Favoring specific attributes
-    {key: 0.3 if key in ["Medicine", "Leadership"] else 0.7 for key in student_input.keys()},  # Penalizing specific attributes
-]
-
-# Perform sensitivity analysis
-results = sensitivity_analysis(weight_sets)
-
-for idx, (test_num, ranking) in enumerate(results):
-    print(f"--- Sensitivity Test {test_num} ---")
-    print(ranking)
-    print("\n")
-
-# Filter Jobs based on Time and Salary
-def filter_jobs(time_filter, salary_filter):
-    filtered_jobs = []
-    for idx, field in enumerate(ranking.index):
-        if field in salaries and field in years_to_land:
-            if idx == 0:  # Include top-ranked job
-                filtered_jobs.append((field, True))  # Mark as "best field"
-            elif len(filtered_jobs) - 1 < 3:  # Ensure at least 3 additional jobs
-                if years_to_land[field] <= time_filter and salaries[field] >= salary_filter:
-                    filtered_jobs.append((field, False))
-    return filtered_jobs
-
-# Display Rankings and Apply Filters
-def display_rankings_and_filters(time_filter, salary_filter):
-    # print("Ranked Fields (TOPSIS):")
-    # for field, score in ranking.items():
-    #     print(f"{field}: {score:.2f}")
+# Main function to run the program
+def run_topsis_from_csv(file_path):
+    # Load the CSV file
+    data = pd.read_csv(file_path)
     
-    st.write("\nRecommended Areas to study:")
-    filtered = filter_jobs(time_filter, salary_filter)
-    if len(filtered) == 1:  # Only the best field is present
-        st.write("No fields match the given filters.")
-        st.write(f"Best Field: {filtered[0][0]}: Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
-    else:
-        for job, is_best in filtered:
-            if is_best:
-                st.write(f"{job} (Best Field): Average Salary ₹{salaries[job]}, Average years it takes to land a job: {years_to_land[job]}")
+    # Extract attributes and fields
+    attributes = data['Unnamed: 0']
+    fields = data.columns[1:]
+    decision_matrix = data.iloc[:, 1:].values
+
+    # Prompt user to select attributes dynamically
+    print("Available attributes:")
+    for idx, attr in enumerate(attributes):
+        print(f"{idx + 1}. {attr}")
+
+    selected_indices = []
+    while True:
+        try:
+            #choices = input("\nEnter the numbers of the attributes you'd like to select (comma-separated): ")
+            selected_indices = list(student_input.keys())
+            if all(0 <= idx < len(attributes) for idx in selected_indices):
+                break
             else:
-                st.write(f"{job}: Average Salary ₹{salaries[job]}, Average years it takes to land a job: {years_to_land[job]}")
+                st.write("Invalid selection. Try again.")
+        except ValueError:
+            st.write("Please enter valid numbers.")
 
-# Example Usage
-time_filter = time_filter  # Example input for max years to land a job
-salary_filter = salary_expect  # Example input for min salary
+    selected_attributes = [attributes[idx] for idx in selected_indices]
 
-display_rankings_and_filters(time_filter, salary_filter)
+    # Get skill levels for each selected attribute
+    skill_levels = []
+    for attr in selected_attributes:
+        while True:
+            try:
+                level = float(input(f"Enter your skill level for {attr} (0-10): "))
+                if 0 <= level <= 10:
+                    skill_levels.append(level / 10)  # Normalize skill level
+                    break
+                else:
+                    print("Skill level must be between 0 and 10.")
+            except ValueError:
+                print("Please enter a valid number.")
+
+    # Map selected attributes to their rows in the decision matrix
+    filtered_matrix = decision_matrix[selected_indices, :]
+
+    # Run TOPSIS
+    scores = topsis_decision(filtered_matrix.T, [1.0 for i in range(len(selected_attributes))])  # Transpose for field-wise calculation
+    field_ranking = sorted(zip(fields, scores), key=lambda x: x[1], reverse=True)
+
+    # Output results
+    st.write("\nField Rankings (Best to Worst):")
+    for rank, (field, score) in enumerate(field_ranking, 1):
+        st.write(f"{rank}. {field} (Score: {score:.4f})")
+    st.write(f"\nYour best field is: {field_ranking[0][0]}")
+
+# Run the program
+if __name__ == "__main__":
+    # Replace 'your_file_path.csv' with your actual file path
+    file_path = "Logically_Adjusted_CSV_Data__Fixed_.csv"
+    run_topsis_from_csv(file_path)
 
