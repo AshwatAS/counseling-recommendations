@@ -411,7 +411,7 @@ selected_hobbies = st.multiselect("Select one or more hobbies:", hobbies)
 selected_soft_skills = st.multiselect("Select one or more skills:", soft_skills)
 selected_technical_skills = st.multiselect("Select one or more technical skills:", technical_skills)
 selected_passion_areas = st.multiselect("Select one or more passion areas:", passion_areas)
-selected_subjects = st.multiselect("Select the subjects you have studied:", subjects)
+selected_subjects = st.multiselect("Select the subjects you are good at:", subjects)
 
 # Capture grades for selected subjects
 grades = {}
@@ -522,7 +522,7 @@ if st.button("Get Career Recommendations"):
         selected_indices=[attributesl.index(x) for x in input_list]
         #st.write(selected_indices)
         filtered_matrix = decision_matrix[selected_indices, :]
-        filtered_matrix
+        #filtered_matrix
         # selected_attributes = [attributes[idx] for idx in selected_indices]
         selected_attributes = input_list
         scores = topsis_decision(filtered_matrix.T, [1.0 for i in range(len(selected_attributes))])  # Transpose for field-wise calculation
