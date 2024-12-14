@@ -516,10 +516,18 @@ if st.button("Get Career Recommendations"):
         scores = topsis_decision(decision_matrix, weights)
         
         st.success("Career Recommendations Generated!")
-        st.write(pd.DataFrame({
-            "Field": data.columns[1:],
-            "Score": scores
-        }).sort_values(by="Score", ascending=False))
+  #     scores = topsis_decision(filtered_matrix.T, [1.0 for i in range(len(selected_attributes))])  # Transpose for field-wise calculation
+#     field_ranking = sorted(zip(fields, scores), key=lambda x: x[1], reverse=True)
+
+#     # Output results
+#     st.write("\nField Rankings (Best to Worst):")
+#     for rank, (field, score) in enumerate(field_ranking, 1):
+#         st.write(f"{rank}. {field} (Score: {score:.4f})")
+#     st.write(f"\nYour best field is: {field_ranking[0][0]}")
+        # st.write(pd.DataFrame({
+        #     "Field": data.columns[1:],
+        #     "Score": scores
+        # }).sort_values(by="Score", ascending=False))
     except Exception as e:
         st.error(f"Error fetching or processing data: {e}")
 
