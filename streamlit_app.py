@@ -293,7 +293,6 @@ def topsis_decision(matrix, weights):
 def run_topsis_from_csv(file_path):
     # Load the CSV file
     data = pd.read_csv("https://raw.githubusercontent.com/AshwatAS/counseling-recommendations/refs/heads/master/Logically_Adjusted_CSV_Data__Fixed_.csv")
-    data
     
     # Extract attributes and fields
     attributes = data['Unnamed: 0']
@@ -301,15 +300,19 @@ def run_topsis_from_csv(file_path):
     decision_matrix = data.iloc[:, 1:].values
 
     # Prompt user to select attributes dynamically
-    print("Available attributes:")
-    for idx, attr in enumerate(attributes):
-        print(f"{idx + 1}. {attr}")
+    # print("Available attributes:")
+    # for idx, attr in enumerate(attributes):
+    #     print(f"{idx + 1}. {attr}")
 
     selected_indices = []
     while True:
+      
         try:
+          
             #choices = input("\nEnter the numbers of the attributes you'd like to select (comma-separated): ")
             selected_indices = list(student_input.keys())
+            st.write(selected_indices)
+          
             if all(0 <= idx < len(attributes) for idx in selected_indices):
                 break
             else:
