@@ -381,9 +381,9 @@ def display_rankings_and_filters(time_filter, salary_filter):
     else:
         for job, is_best in filtered:
             if is_best:
-                st.write(f"{job} (Best Field): Average Salary ₹{salaries[job]}, Years to Land a job {years_to_land[job]}")
+                st.write(f"{job} (Best Field): Average Salary ₹{salaries[job]}, Average years it takes to land a job: {years_to_land[job]}")
             else:
-                st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
+                st.write(f"{job}: Average Salary ₹{salaries[job]}, Average years it takes to land a job: {years_to_land[job]}")
 
 # Example Usage
 time_filter = time_filter  # Example input for max years to land a job
