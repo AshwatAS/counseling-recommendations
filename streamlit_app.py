@@ -418,7 +418,7 @@ grades = {}
 for subject in selected_subjects:
     grades[subject] = st.slider(f"What was your percentage in {subject}?", 1, 100, step=1)
 
-attributes=[
+attributesl=[
         "Painting", "Writing", "Photography", "Gardening", "Cooking",
         "Music Composition", "Dance", "Calligraphy", "Knitting",
         "Bird Watching", "Astronomy", "Woodworking", "Pottery",
@@ -467,7 +467,8 @@ input_data = {
     "Passion Areas": selected_passion_areas,
     "Grades": grades
 }
-
+input_list=[preferred_environment]
+input_list=input_list+selected_hobbies+selected_soft_skills+selected_technical_skills+selected_passion_areas+selected_subjects
 st.write("Your Input Data:")
 st.json(input_data)
 
@@ -516,6 +517,10 @@ if st.button("Get Career Recommendations"):
         scores = topsis_decision(decision_matrix, weights)
         
         st.success("Career Recommendations Generated!")
+        selected_indices=[attributesl.index(x)+1 for x in input_list]
+        filtered_matrix = decision_matrix[selected_indices, :]
+        # selected_attributes = [attributes[idx] for idx in selected_indices]
+        selected_attributes = input_list
         scores = topsis_decision(filtered_matrix.T, [1.0 for i in range(len(selected_attributes))])  # Transpose for field-wise calculation
         field_ranking = sorted(zip(fields, scores), key=lambda x: x[1], reverse=True)
 
