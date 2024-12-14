@@ -290,10 +290,12 @@ years_to_land = {
     "Law": 5
 }
 
+normalized_df = (df[fields] - df[fields].min()) / (df[fields].max() - df[fields].min())
+
 # Weighted Decision Matrix
-weighted_df = df.copy()
+weighted_df = normalized_df.copy()
 for attr, weight in student_input.items():
-    weighted_df.loc[weighted_df["Attribute"] == attr, fields] *= weight
+    weighted_df.loc[df["Attribute"] == attr, fields] *= weight
 
 # Ideal Solutions
 ideal_solution = weighted_df[fields].max()
@@ -307,59 +309,71 @@ separation_negative = np.sqrt(((weighted_df[fields] - negative_ideal_solution) *
 relative_closeness = separation_negative / (separation_ideal + separation_negative)
 ranking = relative_closeness.sort_values(ascending=False)
 
+# Sensitivity Analysis
+def sensitivity_analysis(weight_sets):
+    """
+    Perform sensitivity analysis by testing the algorithm with different weight configurations.
+
+    Parameters:
+    weight_sets (list of dict): A list of weight dictionaries to test.
+
+    Returns:
+    list of pd.Series: Rankings for each weight configuration.
+    """
+    results = []
+    for i, weights in enumerate(weight_sets):
+        # Create a weighted decision matrix with the given weights
+        temp_weighted_df = normalized_df.copy()
+        for attr, weight in weights.items():
+            temp_weighted_df.loc[df["Attribute"] == attr, fields] *= weight
+
+        # Recalculate ideal solutions and separations
+        temp_ideal_solution = temp_weighted_df[fields].max()
+        temp_negative_ideal_solution = temp_weighted_df[fields].min()
+
+        temp_separation_ideal = np.sqrt(((temp_weighted_df[fields] - temp_ideal_solution) ** 2).sum(axis=0))
+        temp_separation_negative = np.sqrt(((temp_weighted_df[fields] - temp_negative_ideal_solution) ** 2).sum(axis=0))
+
+        temp_relative_closeness = temp_separation_negative / (temp_separation_ideal + temp_separation_negative)
+        temp_ranking = temp_relative_closeness.sort_values(ascending=False)
+
+        results.append((i + 1, temp_ranking))
+    return results
+
+# Define weight variations
+weight_sets = [
+    {key: 0.5 for key in student_input.keys()},  # Equal weight for all
+    {key: 0.8 if key in ["Data Analysis", "Adaptability"] else 0.4 for key in student_input.keys()},  # Favoring specific attributes
+    {key: 0.3 if key in ["Medicine", "Leadership"] else 0.7 for key in student_input.keys()},  # Penalizing specific attributes
+]
+
+# Perform sensitivity analysis
+results = sensitivity_analysis(weight_sets)
+
+for idx, (test_num, ranking) in enumerate(results):
+    print(f"--- Sensitivity Test {test_num} ---")
+    print(ranking)
+    print("\n")
+
 # Filter Jobs based on Time and Salary
 def filter_jobs(time_filter, salary_filter):
     filtered_jobs = []
     for idx, field in enumerate(ranking.index):
-        # Ensure the field is in salaries and years_to_land dictionaries
         if field in salaries and field in years_to_land:
-            if idx == 0:  # Always include the top-ranked job
+            if idx == 0:  # Include top-ranked job
                 filtered_jobs.append((field, True))  # Mark as "best field"
             elif len(filtered_jobs) - 1 < 3:  # Ensure at least 3 additional jobs
                 if years_to_land[field] <= time_filter and salaries[field] >= salary_filter:
-                    filtered_jobs.append((field, False))  # Regular fields
+                    filtered_jobs.append((field, False))
     return filtered_jobs
 
 # Display Rankings and Apply Filters
-# def display_rankings_and_filters(time_filter, salary_filter):
-#   st.title("Career Recommendations")
-#   st.write("### Ranked Fields (TOPSIS):")
-#   for field, score in ranking.items():
-#       st.write(f"{field}: {score:.2f}")
-  
-#   st.write("### Filtered Fields:")
-#   filtered = filter_jobs(time_filter, salary_filter)
-#   if len(filtered) == 1:  # Only the best field is present
-#       st.write("No fields match the given filters.")
-#       st.write(f"**Best Field:** {filtered[0][0]} - Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
-#   else:
-#       for job, is_best in filtered:
-#           if is_best:
-#               st.write(f"**{job} (Best Field):** Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
-#           else:
-#               st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
-    # st.write("### Ranked Fields (TOPSIS):")
-    # for field, score in ranking.items():
-    #     st.write(f"{field}: {score:.2f}")
-    
-    # st.write("### Filtered Fields:")
-    # filtered = filter_jobs(time_filter, salary_filter)
-    # if len(filtered) == 1:  # Only the best field is present
-    #     st.write("No fields match the given filters.")
-    #     st.write(f"**Best Field:** {filtered[0][0]} - Salary ₹{salaries[filtered[0][0]]}, Years to Land {years_to_land[filtered[0][0]]}")
-    # else:
-    #     for job, is_best in filtered:
-    #         if is_best:
-    #             st.write(f"**{job} (Best Field):** Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
-    #         else:
-    #             st.write(f"{job}: Salary ₹{salaries[job]}, Years to Land {years_to_land[job]}")
-
 def display_rankings_and_filters(time_filter, salary_filter):
-    st.write("Ranked Fields (TOPSIS):")
-    for field, score in ranking.items():
-        st.write(f"{field}: {score:.2f}")
+    # print("Ranked Fields (TOPSIS):")
+    # for field, score in ranking.items():
+    #     print(f"{field}: {score:.2f}")
     
-    st.write("\nFiltered Fields:")
+    st.write("\nRecommended Areas to study:")
     filtered = filter_jobs(time_filter, salary_filter)
     if len(filtered) == 1:  # Only the best field is present
         st.write("No fields match the given filters.")
@@ -376,3 +390,4 @@ time_filter = time_filter  # Example input for max years to land a job
 salary_filter = salary_expect  # Example input for min salary
 
 display_rankings_and_filters(time_filter, salary_filter)
+
