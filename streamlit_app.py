@@ -509,6 +509,8 @@ if st.button("Get Career Recommendations"):
         attributes = data['Unnamed: 0']
         fields = data.columns[1:]
         decision_matrix = data.iloc[:, 1:].values
+        data
+        decision_matrix
         #decision_matrix = data.iloc[:, 1:].values
         #attributes = data.iloc[:, 0].tolist()
 
