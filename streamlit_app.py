@@ -509,8 +509,8 @@ if st.button("Get Career Recommendations"):
         attributes = data['Unnamed: 0']
         fields = data.columns[1:]
         decision_matrix = data.iloc[:, 1:].values
-        data
-        decision_matrix
+        #data
+        #decision_matrix
         #decision_matrix = data.iloc[:, 1:].values
         #attributes = data.iloc[:, 0].tolist()
 
@@ -531,7 +531,8 @@ if st.button("Get Career Recommendations"):
 #     # Output results
         st.write("\nRankings for the fields you should go to (Best to Worst):")
         for rank, (field, score) in enumerate(field_ranking, 1):
-            st.write(f"{rank}. {field} (Score: {score:.4f})")
+            if score>0: 
+                st.write(f"{rank}. {field} (Score: {score:.4f})")
         st.write(f"\nYour best field is: {field_ranking[0][0]}")
         # st.write(pd.DataFrame({
         #     "Field": data.columns[1:],
